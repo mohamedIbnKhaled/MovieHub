@@ -1,9 +1,9 @@
 package com.Fawry.MovieHub_backend.services;
 
 
-import com.Fawry.MovieHub_backend.authentication.AuthenticationRequest;
-import com.Fawry.MovieHub_backend.authentication.AuthenticationResponse;
-import com.Fawry.MovieHub_backend.authentication.RegisterRequest;
+import com.Fawry.MovieHub_backend.dto.loginRequest;
+import com.Fawry.MovieHub_backend.dto.AuthenticationResponse;
+import com.Fawry.MovieHub_backend.dto.RegisterRequest;
 
 import com.Fawry.MovieHub_backend.model.User;
 import com.Fawry.MovieHub_backend.model.enums.Role;
@@ -11,11 +11,8 @@ import com.Fawry.MovieHub_backend.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +32,7 @@ public class AuthenticatoinService {
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse authenticate(loginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),request.getPassword()));
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow();//to do handle el expiation dah
         var jwtToken = jwtService.generateToken(user);

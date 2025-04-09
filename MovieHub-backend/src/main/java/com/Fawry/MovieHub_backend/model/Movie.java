@@ -23,6 +23,15 @@ public class Movie {
     private int releaseYear;
     @Column(nullable = false)
     private double rating;
+    private String poster;
 
-
+    public Movie(String title, String description, String director, String genre, int releaseYear, double rating, String poster) {
+        this.title = title;
+        this.description = description;
+        this.director = director;
+        this.genre = genre;
+        this.releaseYear = releaseYear;
+        this.rating = rating;
+        this.poster = poster;
+    }
 }

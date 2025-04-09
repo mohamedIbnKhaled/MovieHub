@@ -1,4 +1,4 @@
-package com.Fawry.MovieHub_backend.authentication;
+package com.Fawry.MovieHub_backend.dto;
 
 import com.Fawry.MovieHub_backend.model.enums.Role;
 import lombok.AllArgsConstructor;
@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-    private  String username;
-    private  String password;
+public class RegisterRequest {
+    private String username;
+    private String password;
     private Role role;
 }
