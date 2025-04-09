@@ -6,14 +6,12 @@ import com.Fawry.MovieHub_backend.dto.RegisterRequest;
 import com.Fawry.MovieHub_backend.services.AuthenticatoinService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class AuthenticationController {
     private final AuthenticatoinService authenticatoinService;
 
