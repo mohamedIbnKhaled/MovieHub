@@ -1,0 +1,21 @@
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="input-group">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Search movies..." 
+          [(ngModel)]="s"
+        >
+        <button 
+          class="btn btn-primary" 
+          type="button"
+          (click)="search()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

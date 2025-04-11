@@ -29,13 +29,13 @@ public class AuthenticatoinService {
         user.setRole(Role.USER);
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse.builder().token(jwtToken).role(Role.USER.toString()).build();
     }
 
     public AuthenticationResponse authenticate(loginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),request.getPassword()));
         User user = userRepository.findByUsername(request.getUsername()).orElseThrow();//to do handle el expiation dah
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse.builder().token(jwtToken).role(user.getRole().toString()).build();
     }
 }
