@@ -9,31 +9,33 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movies")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class Moviecontroller {
 
     private final MovieService movieService;
 
 
     @GetMapping
-    public ResponseEntity<Page<Movie>> getAllMovies(Pageable pageable) {
-        return ResponseEntity.ok(movieService.getAllMovies(pageable));
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        return ResponseEntity.ok(movieService.getAllMovies());
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Page<Movie>> searchMovies(@RequestParam("title") String title, Pageable pageable) {
-        return ResponseEntity.ok(movieService.searchMovies(title, pageable));
+    public ResponseEntity<List<Movie>> searchMovies(@RequestParam("Title") String title) {
+        return ResponseEntity.ok(movieService.searchMovies(title));
     }
 
 
     @PostMapping
-    public ResponseEntity<String> addMovie(@RequestBody MovieDTO movieDTO) {
-        movieService.addMovie(movieDTO);
-        return ResponseEntity.ok("Movie added successfully.");
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
+        movieService.addMovie(movie);
+        return ResponseEntity.ok(movie);
     }
 
 

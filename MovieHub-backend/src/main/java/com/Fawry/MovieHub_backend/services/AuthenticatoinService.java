@@ -26,10 +26,10 @@ public class AuthenticatoinService {
         User user = new com.Fawry.MovieHub_backend.model.User();
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.USER);
+        user.setRole(request.getRole());
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).role(Role.USER.toString()).build();
+        return AuthenticationResponse.builder().token(jwtToken).role(user.getRole().toString()).build();
     }
 
     public AuthenticationResponse authenticate(loginRequest request) {

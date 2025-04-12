@@ -1,5 +1,6 @@
 package com.Fawry.MovieHub_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,24 +15,23 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @JsonProperty("imdbID")
+    @Column(nullable = false, unique = true)
+    private String imdbID;
+
+    @JsonProperty("Title")
     @Column(nullable = false)
     private String title;
-    private String description;
-    private String director;
-    private String genre;
+
+    @JsonProperty("Year")
     @Column(nullable = false)
-    private int releaseYear;
-    @Column(nullable = false)
-    private double rating;
+    private String year;
+
+    @JsonProperty("Poster")
     private String poster;
 
-    public Movie(String title, String description, String director, String genre, int releaseYear, double rating, String poster) {
-        this.title = title;
-        this.description = description;
-        this.director = director;
-        this.genre = genre;
-        this.releaseYear = releaseYear;
-        this.rating = rating;
-        this.poster = poster;
-    }
+    @JsonProperty("Type")
+    private String type;
+
 }

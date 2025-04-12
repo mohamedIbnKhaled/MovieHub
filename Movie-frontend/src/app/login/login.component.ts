@@ -1,33 +1,34 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MovieService } from '../service/movie.service';
 
 @Component({
   selector: 'app-login',
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   username: string = ''; 
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private movieService: MovieService) { }
 
   onSubmit() {
     const user = { username: this.username, password: this.password };
 
     this.authService.login(user).subscribe({
-      next: (response) => {
-        localStorage.setItem('auth_token', response.token);
+      next: (response: any) => {  
+        localStorage.setItem('token', response.token);
         localStorage.setItem('user_role', response.role);
-        localStorage.setItem('username', this.username); 
-        
-       
+        localStorage.setItem('username', this.username);
+        console.log(response.token);
+
         if (response.role === 'ADMIN') {
           this.router.navigate(['/admin-dash']);
         } else {

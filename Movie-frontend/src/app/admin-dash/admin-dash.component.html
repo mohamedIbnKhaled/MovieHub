@@ -1,8 +1,29 @@
-<div class="admin-dashboard">
-  <h1>Admin Dashboard</h1>
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <app-search-bar (searchEvent)="search($event)"></app-search-bar>
+<div class="container my-4">
+  <h1 class="mb-4 text-center">Admin Dashboard</h1>
+  <div class="mb-3">
+    <app-search-bar (searchEvent)="search($event)"></app-search-bar>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="movie" class="mb-4">
+    <app-movie [movie]="movie"></app-movie>
+  </div>
+
+  <div>
+    <h2 class="mb-3">Movies in Database</h2>
+    
+    <div *ngIf="moviesFromData.length === 0 && !error" class="text-muted">
+      Loading movies...
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let movie of moviesFromData">
+        <app-movie [movie]="movie">
+        </app-movie>
+      </div>
     </div>
   </div>
 </div>
