@@ -200,3 +200,11 @@ The Movie Management API provides the following endpoints to interact with the m
 | `POST` | `/api/auth/register`    | Register a new user          |
 | `POST` | `/api/auth/login`       | Login for an existing user   |
 
+## Example Local Image
+
+![admin dashboard](images/admin_dash.PNG)
+![admin_search](images/admin_search.PNG)
+![login](Capture.PNG)
+![movie_details](images/movie-details.PNG)
+![user_dash](images/user_dash.PNG)
+
