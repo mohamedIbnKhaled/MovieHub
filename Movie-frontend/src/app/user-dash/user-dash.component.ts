@@ -17,7 +17,7 @@ export class UserDashComponent implements OnInit  {
   constructor( private movieService: MovieService) {}
   ngOnInit(): void {
     if (typeof window !== 'undefined' && window.localStorage) {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('auth_token');
       console.log('Token from localStorage:', token);
       this.movieService.getAllMovies().subscribe({
         next: (movies) => {

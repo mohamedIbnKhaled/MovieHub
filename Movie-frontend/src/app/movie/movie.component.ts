@@ -15,12 +15,12 @@ export class MovieComponent {
   
   addMovie(movie: any) {
     if (typeof window !== 'undefined' && window.localStorage) {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('auth_token');
     this.movieService.addMovie(movie).subscribe();
   }
 }
 removeMovie(movie: any) {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
   this.movieService.deleteMovie(movie).subscribe({
     next: (response) => {
       console.log('Movie deleted successfully', response);

@@ -20,7 +20,6 @@ export class MovieService {
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
     });
   }
   
@@ -33,8 +32,8 @@ export class MovieService {
       return throwError(() => new Error('Something went wrong; please try again later.'));
   }
 
-  getAllMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.apiUrl, { headers: this.getHeaders() })
+  getAllMovies(): Observable<MovieDetails[]> {
+    return this.http.get<MovieDetails[]>(this.apiUrl, { headers: this.getHeaders() })
       .pipe(catchError(this.handleError));
   }
 
