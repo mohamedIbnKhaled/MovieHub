@@ -40,9 +40,9 @@ public class Moviecontroller {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> removeMovie(@PathVariable int id) {
+    public ResponseEntity<Void> removeMovie(@PathVariable int id) {
         movieService.removeMovie(id);
-        return ResponseEntity.ok("Movie removed successfully.");
+        return ResponseEntity.ok().build();
     }
 
 

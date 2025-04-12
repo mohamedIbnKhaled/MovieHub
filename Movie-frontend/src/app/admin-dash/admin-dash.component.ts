@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { OmdbService } from '../service/omdb.service';
-import { Movie } from '../movie/movie.model';
+import { Movie } from '../models/movie.model';
 import { MovieComponent } from "../movie/movie.component";
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../service/movie.service';
@@ -38,10 +38,7 @@ export class AdminDashComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const token = localStorage.getItem('token');
-      console.log('Token from localStorage:', token);
-      this.movieService.getAllMovies(token!).subscribe({
+      this.movieService.getAllMovies().subscribe({
         next: (movies) => {
           console.log('Movies loaded successfully:', movies);
           this.moviesFromData = movies;
@@ -56,5 +53,5 @@ export class AdminDashComponent implements OnInit {
         }
       });
     }
-  }
+
 }

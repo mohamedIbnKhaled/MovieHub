@@ -33,5 +33,11 @@ public class Movie {
 
     @JsonProperty("Type")
     private String type;
+    @JsonProperty("director")
+    private String director;
+    @JsonProperty("Genre")
+    private String genre;
+    @JsonProperty("Plot")
+    private String  plot;
 
 }

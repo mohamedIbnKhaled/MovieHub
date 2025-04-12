@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Movie } from '../movie/movie.model';
+import { Movie } from '../models/movie.model';
+import { MovieDetails } from '../models/moviedetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class OmdbService {
 
   constructor(private http: HttpClient) {}
 
-  getMovieByTitle(title: string): Observable<Movie> {
-    return this.http.get<Movie>(`${this.apiUrl}?t=${title}&apikey=${this.apiKey}`);
+  getMovieByTitle(title: string): Observable<MovieDetails> {
+    return this.http.get<MovieDetails>(`${this.apiUrl}?t=${title}&apikey=${this.apiKey}`);
   }
 }

@@ -1,12 +1,12 @@
-import { MovieComponent } from "../movie/movie.component";
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../service/movie.service';
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../movie/movie.model';
+import { Movie } from '../models/movie.model';
+import { UsermovieComponent } from "../usermovie/usermovie.component";
 
 @Component({
   selector: 'app-user-dash',
-  imports: [MovieComponent,CommonModule],
+  imports: [ CommonModule, UsermovieComponent],
   templateUrl: './user-dash.component.html',
   styleUrl: './user-dash.component.css'
 })
@@ -19,7 +19,7 @@ export class UserDashComponent implements OnInit  {
     if (typeof window !== 'undefined' && window.localStorage) {
       const token = localStorage.getItem('token');
       console.log('Token from localStorage:', token);
-      this.movieService.getAllMovies(token!).subscribe({
+      this.movieService.getAllMovies().subscribe({
         next: (movies) => {
           console.log('Movies loaded successfully:', movies);
           this.moviesFromData = movies;

@@ -1,0 +1,15 @@
+<div>
+  <img [src]="movie.Poster" alt="poster" class="card-img-top">
+  <button class="btn btn-primary" (click)="movieDetails(movie)"><details></details></button>
+</div>
+
+<div *ngIf="isModalOpen" class="modal-overlay">
+  <div class="modal-content">
+    <h2>{{ movieDetailss?.Title }} ({{ movieDetailss?.Year }})</h2>
+    <p>Genre: {{ movieDetailss?.Genre }}</p>
+    <p>Director: {{ movieDetailss?.Director }}</p>
+    <p>Plot {{ movieDetailss?.Plot }}</p>
+    <img [src]="movieDetailss?.Poster" alt="{{ movieDetailss?.Title }} Poster">
+    <button (click)="closeDetails()">Close</button>
+  </div>
+</div>
