@@ -18,7 +18,7 @@ export class MovieService {
   private getHeaders(): HttpHeaders {
     const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
     return new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
+      'Authorization': `${token}`,
       'Content-Type': 'application/json',
     });
   }

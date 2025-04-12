@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MovieService } from '../service/movie.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +25,7 @@ export class LoginComponent {
 
     this.authService.login(user).subscribe({
       next: (response: any) => {  
-        localStorage.setItem('auth_token', response.token);
-        localStorage.setItem('user_role', response.role);
+        localStorage.setItem('auth_token', 'Bearer ' + response.token);        localStorage.setItem('user_role', response.role);
         localStorage.setItem('username', this.username);
         console.log(response.token);
 
@@ -40,5 +40,24 @@ export class LoginComponent {
         this.errorMessage = 'Login failed. Please check your credentials.';
       }
     });
+  }
+
+  private getHeaders(): HttpHeaders {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
+    console.log('Auth token from storage:', token);
+    
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    
+    if (token) {
+      if (token.startsWith('Bearer ')) {
+        headers = headers.set('Authorization', token);
+      } else {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    
+    return headers;
   }
 }
