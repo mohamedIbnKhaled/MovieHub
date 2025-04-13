@@ -13,7 +13,7 @@ import { MovieService } from '../service/movie.service';
   templateUrl: './admin-dash.component.html',
   styleUrls: ['./admin-dash.component.css']
 })
-export class AdminDashComponent implements OnInit {
+export class AdminDashComponent implements OnInit  {
   movie!: Movie;
   moviesFromData: Movie[] = [];
   error: string | null = null;
@@ -38,6 +38,9 @@ export class AdminDashComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const token = localStorage.getItem('auth_token');
+      console.log('Token from localStorage:', token);
       this.movieService.getAllMovies().subscribe({
         next: (movies) => {
           console.log('Movies loaded successfully:', movies);
@@ -53,5 +56,6 @@ export class AdminDashComponent implements OnInit {
         }
       });
     }
+  }
 
 }
